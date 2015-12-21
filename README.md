@@ -1,7 +1,7 @@
 # Linux_Scripts
 #####Scripts I use in everyday linux live to aid me.
 
-##CLUI.sh-Simple menu for tty environment
+##CLUI.sh-Simple menu for cli/tty environment
 Clui features sudoless shutdown/reboot/suspend/hibernate, a simple menu, a lot of utilities. Try it out!
 
 Disclaimer:only tested in Lubuntu
