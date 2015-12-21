@@ -6,7 +6,6 @@
 SCRIPT="y"
 CUR_DIR=$("pwd")
 CUR_BAT=$(upower -i $(upower -e | grep BAT) | grep --color=never -E percentage|xargs|cut -d' ' -f2|sed s/%//)
-VALID="n"
 
 echo
 echo "Hi, $USER"
