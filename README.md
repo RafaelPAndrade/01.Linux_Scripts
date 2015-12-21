@@ -2,15 +2,27 @@
 #####Scripts I use in everyday linux live to aid me.
 ##CLUI.sh-Simple menu for tty environment
 Clui features sudoless shutdown/reboot/suspend/hibernate, a simple menu, a lot of utilities. Try it out!
+
 Disclaimer:only tested in Lubuntu
+
 Notes:
+
+-Some directories are hardcoded. Change them as you need.
+
 -In CLUI.sh, you will need these packages:
+
   -fortune(and alter the k file path to match your own)
+
   -cowsay
+
   -bsdgames
+
   -greed
+
   -nano
+
   -mplayer
+
   -elinks
   
 
