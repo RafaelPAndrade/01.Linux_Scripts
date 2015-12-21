@@ -9,14 +9,13 @@ Disclaimer:only tested in Lubuntu
 Notes:
   *Some directories are hardcoded. Change them as you need.
   *In CLUI.sh, you will need these packages:
-    *fortune (and alter the k file path to match your own)
-    *cowsay
-    *bsdgames
-    *greed
-    *nano
-    *mplayer
-    *elinks
-  
+      *fortune (and alter the k file path to match your own)
+      *cowsay
+      *bsdgames
+      *greed
+      *nano
+      *mplayer
+      *elinks
 
 ##Script.sh
 Simple script for automating updates and cleaning up uneeded packages. Must be sudo.
