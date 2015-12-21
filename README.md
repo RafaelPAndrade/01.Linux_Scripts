@@ -18,4 +18,5 @@ Notes:
       * elinks
 
 ##Script.sh
-Simple script for automating updates and cleaning up uneeded packages. Must be sudo.
+Simple script for automating updates and cleaning up uneeded packages. Needs an administrative root password, as it has
+> sudo apt-get
