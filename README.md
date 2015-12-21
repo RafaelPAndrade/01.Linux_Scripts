@@ -12,13 +12,13 @@ Notes:
 
 *In CLUI.sh, you will need these packages:
 
-  *fortune (and alter the k file path to match your own)
-  *cowsay
-  *bsdgames
-  *greed
-  *nano
-  *mplayer
-  *elinks
+   *fortune (and alter the k file path to match your own)
+   *cowsay
+   *bsdgames
+   *greed
+   *nano
+   *mplayer
+   *elinks
   
 
 ##Script.sh
