@@ -13,7 +13,7 @@ if [ "$HACK" = "y"]; then
 	setterm -background black -foreground green -store
 else:
 	setterm -background black -foreground white -store
-
+fi
 
 echo
 echo "Hi, $USER"
