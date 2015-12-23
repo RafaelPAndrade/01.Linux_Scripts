@@ -7,9 +7,17 @@ SCRIPT="y"
 CUR_DIR=$("pwd")
 CUR_BAT=$(upower -i $(upower -e | grep BAT) | grep --color=never -E percentage|xargs|cut -d' ' -f2|sed s/%//)
 
+echo "Hack Mode(y/n)?"
+read -n 1 HACK
+if [ "$HACK" = "y" ] ; then
+	setterm -background black -foreground green -store
+else:
+	setterm -background black -foreground white -store
+fi
+
 echo
 echo "Hi, $USER"
-echo "CLUI v1.51"
+echo "CLUI v1.52"
 date +"%A %d-%m-%y%t%T"
 echo
 upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ empty|percentage"
