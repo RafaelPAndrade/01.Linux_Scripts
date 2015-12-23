@@ -9,7 +9,7 @@ CUR_BAT=$(upower -i $(upower -e | grep BAT) | grep --color=never -E percentage|x
 
 echo "Hack Mode(y/n)?"
 read -n 1 HACK
-if [ "$HACK" = "y"]; then
+if [ "$HACK" = "y" ] ; then
 	setterm -background black -foreground green -store
 else:
 	setterm -background black -foreground white -store
