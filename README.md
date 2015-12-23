@@ -26,9 +26,8 @@ Simple script for automating updates and cleaning up uneeded packages. Needs an 
 
 #Tutorials for the lazy
 
-##Using a custom file for fortune(in this repo, k)
-
-(Source)[http://ubuntuforums.org/showthread.php?t=1343692&p=8456253#post8456253]
+###Using a custom file for fortune(in this repo, k)
+[Source](http://ubuntuforums.org/showthread.php?t=1343692&p=8456253#post8456253)
 
 #####1. Create a text file(like k in this repo), make sure you separate each sentence by a empty line containing only one %
 #####2. Run the following command. If you're in ~/bin and have the "k" file there:
@@ -39,5 +38,5 @@ Simple script for automating updates and cleaning up uneeded packages. Needs an 
 >fortune /path/to/file/yourfile.dat (in my case, fortune ~/bin/k.dat)
 
 
-##In the future- fix hibernation in lxde
+###In the future- fix hibernation in lxde
 
