@@ -32,11 +32,12 @@ Simple script for automating updates and cleaning up uneeded packages. Needs an 
 #####1. Create a text file(like k in this repo), make sure you separate each sentence by a empty line containing only one %
 #####2. Run the following command. If you're in ~/bin and have the "k" file there:
 >strfile -c % k k.dat
+
 #####The output will be k.dat
 
 #####3. Now, to use your custom file in fortune, you only need to execute
 >fortune /path/to/file/yourfile.dat (in my case, fortune ~/bin/k.dat)
 
 
-###In the future- fix hibernation in lxde
+####In the future- fix hibernation in lxde
 
