@@ -178,5 +178,5 @@ fi
 
 done
 
-cd $CUR_DIR
+cd "$CUR_DIR"
 echo
