@@ -11,7 +11,7 @@ echo "Hack Mode(y/n)?"
 read -n 1 HACK
 if [ "$HACK" = "y" ] ; then
 	setterm -background black -foreground green -store
-else:
+else
 	setterm -background black -foreground white -store
 fi
 
