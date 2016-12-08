@@ -1,6 +1,0 @@
-Test
-
-Fetching with git
-
-Branched locally to dev
-
