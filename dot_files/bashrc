@@ -1,0 +1,13 @@
+###################################
+#User edited alias - bashrc
+###################################
+
+# Note: Do not space the = sign. It will break alias
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# clear alias (but it's better to use Ctrl-l)
+alias c='clear'

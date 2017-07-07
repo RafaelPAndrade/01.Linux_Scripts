@@ -1,0 +1,41 @@
+###################################
+#User edited alias - nanorc
+###################################
+
+#Rafael P.Andrade nanorc
+#Last edited date: 24/III/2017
+#Base nano version: nano 2.5.3
+
+#See cursor and line indication
+set constantshow
+
+#See cursor and line indication- legacy mode
+set const
+
+#C/C++
+include "/usr/share/nano/c.nanorc"
+
+#Smooth scrolling
+set smooth
+
+#Soft Wrap
+set softwrap
+
+#Auto-indent
+set autoindent
+
+#1 Tab = 4 Spaces
+set tabsize 4
+
+#Use mouse
+set mouse
+
+#Ctrl-R inserts file in new Buffer
+set multibuffer
+
+#Search function extended with regex search
+set regexp
+
+#Enable suspension with Ctrl-Z
+set suspend
+
