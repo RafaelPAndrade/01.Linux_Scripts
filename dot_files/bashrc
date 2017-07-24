@@ -11,3 +11,8 @@ alias l='ls -CF'
 
 # clear alias (but it's better to use Ctrl-l)
 alias c='clear'
+
+# Augmentate history in 2 orders of magnitude
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=100000
+HISTFILESIZE=200000
