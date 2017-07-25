@@ -11,7 +11,7 @@ WINDOW1_NAME='Deepwork'
 # A random man page!
 Main_command='man $(ls /usr/share/man/man* | shuf -n1 | cut -d. -f1)'
 Wingman_command='~/script.sh'
-Minimap_command='watch -n 1 -c -- tree -trC'
+Minimap_command='watch -n 1 -tc -- tree -trC'
 Cal_command='cal'
 
 
