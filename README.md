@@ -31,7 +31,7 @@ report.
 
 ## TODO ##
 
- - [ ] Cleanup script - separate script, to "un-append" the
+ - [x] Cleanup script - separate script, to "un-append" the
        customizations made (?+ delete scripts?)
 
  - [ ] Add support to subdirectories
