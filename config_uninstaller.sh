@@ -30,6 +30,9 @@ SCRIPTS_PATH="$HOME/"
 # File that contains the customizations separator
 CUSTOM_BAR="./separator"
 
+# File name for a temp file.
+TEMP_FILE="r4nd0m_f1l3n4m3"
+
 
 ## Program start ##
 
@@ -45,8 +48,13 @@ if [ -d "$CONFIG_FOLDER" ] ; then
 			echo "\t\tResetting $l (file found and is writeable)"
 			A=$(grep --file="$CUSTOM_BAR" --max-count=1 --line-number\
 			    "$CONFIG_PATH.$l" | cut --delimiter=: --field=1)
-			echo "This is line: $A"
-			head "$CONFIG_PATH.$l" -n "$A"| head -n -1 > "$CONFIG_PATH"".$l"
+			if [ -n "$A" ] ; then
+				echo "\t\tSeparator found! Deleting below line $A"
+				head "$CONFIG_PATH.$l" -n "$A"| head -n -1 >| "$TEMP_FILE"
+				mv "$TEMP_FILE" "$CONFIG_PATH.$l"
+			else
+				echo "\t\tSeparator not found. Leaving .$l unchanged"
+			fi
 		else
 			echo "\t\t$CONFIG_PATH.$l does not exist or is not writeable"
 		fi

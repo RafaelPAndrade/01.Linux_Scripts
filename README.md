@@ -28,7 +28,7 @@
 
 		When run, this script:
 
-		-	Strips the configs from all the lines that are bellow
+		-	Strips the configs from all the lines that are below
 			the $SEPARATOR.
 
 		-	Compares all the scripts in $SCRIPTS_FOLDER to their
@@ -69,6 +69,7 @@ Dependencies (tested):
 	-	cut
 	-	head
 	-	rm
+	-	mv
 +	GNU grep (2.25)
 +	cmp (diffutils 3.3)
 
