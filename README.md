@@ -1,40 +1,92 @@
 # Linux_Scripts #
 
-### Scripts I use in my Linux environment ###
-
-
-## Programs customized ##
-
- - bash
- - git
- - nano
- - tmux
+### Auto config scripts ###
 
 
 ## Instructions ##
 
-Just run ./config_installer.sh from anywhere, and it will append the
-files under dot_files/ to the hidden files of the same name in
-$HOME. Also, it will copy the contents of tmux_stuff directly in
-$HOME, interactively (if there are files with the same name, it
-will ask what should it do).
+*	### Scripts ###
 
-Note that this repo is one of the possible configurations.
-The names of the folders can be changed, as well as the destination
-folder; however, their names must also be changed in
-config_installer.sh.
+	+	config_installer.sh
 
-This script is intended to be cross platform (sh script, no bashisms);
+		When run, this script:
+
+		-	Appends all the files in the folder $CONFIG_FOLDER to their
+			hidden equivalent in $CONFIG_PATH. This is, the file bashrc
+			(and $SEPARATOR) will be appended to ~/.bashrc.
+
+		-	Copies (interactively) all the scripts in the folder 
+			$SCRIPTS_FOLDER to $SCRIPTS_PATH, and changes the permissions
+			to 700 (only the user can read, write and execute the script).
+
+		To run:
+
+			./config_installer.sh
+
+
+	+	config_uninstaller.sh
+
+		When run, this script:
+
+		-	Strips the configs from all the lines that are bellow
+			the $SEPARATOR.
+
+		-	Compares all the scripts in $SCRIPTS_FOLDER to their
+			equivalent in $SCRIPTS_PATH. If no difference is found,
+			there will be a prompt for deletion.
+
+		To run:
+
+			./config_uninstaller.sh
+
+
+
+*	### Configuring/Settings ###
+
+	The variables refered above ($CONFIG_PATH, $SEPARATOR, etc.) are
+	defined at the top of both config_installer and config_unistaller.
+
+	If you wish to change the defaults, feel free to fork, and then
+	change those variables to others that suit your needs better.
+
+
+## Assumptions/Dependencies ##
+
+This repo/project is intended to be cross platform (sh script, no bashisms);
 if any problem arises in any Posix compliant OS, please fill a bug
 report.
+
+Dependencies (tested):
+
++	sh/dash
++	GNU coreutils (8.25)
+	-	test / [
+	-	echo
+	-	ls
+	-	cat
+	-	cp
+	-	chmod
+	-	cut
+	-	head
+	-	rm
++	GNU grep (2.25)
++	cmp (diffutils 3.3)
+
 
 
 ## TODO ##
 
- - [x] Cleanup script - separate script, to "un-append" the
-       customizations made (?+ delete scripts?)
+-	[x] Cleanup script - separate script, to "un-append" the
+	customizations made + delete scripts
 
- - [ ] Add support to subdirectories
+-	[ ] Add support to subdirectories
+
+## Programs customized/tested ##
+
+-	bash
+-	git
+-	nano
+-	tmux
 
 
 ## Credits ##
