@@ -10,9 +10,9 @@ WINDOW1_NAME='Deepwork'
 # These commands are send using tmux' send-keys
 # A random man page!
 Main_command='man $(ls /usr/share/man/man* | shuf -n1 | cut -d. -f1)'
-Wingman_command='~/script.sh'
+Wingman_command='~/bin/Script.sh'
 Minimap_command='watch -n 1 -tc -- tree -trC'
-Cal_command='cal'
+Cal_command='watch -n 3600 -t -- cal -h'
 
 
 # Test if inside a tmux session

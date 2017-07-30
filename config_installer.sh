@@ -20,7 +20,7 @@ CONFIG_PATH="$HOME/"
 SCRIPTS_FOLDER="./tmux_stuff/"
 
 # Destination for scripts
-SCRIPTS_PATH="$HOME/"
+SCRIPTS_PATH="$HOME/bin/"
 
 # File that contains the customizations separator
 CUSTOM_BAR="./separator"
