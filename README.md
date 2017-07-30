@@ -2,7 +2,6 @@
 
 ### Auto config scripts ###
 
-
 ## Instructions ##
 
 *	### Scripts ###
@@ -17,11 +16,12 @@
 
 		-	Copies (interactively) all the scripts in the folder 
 			$SCRIPTS_FOLDER to $SCRIPTS_PATH, and changes the permissions
-			to 700 (only the user can read, write and execute the script).
+			to 700 (only the file owner can read, write and execute the
+			script).
 
 		To run:
 
-			./config_installer.sh
+				./config_installer.sh
 
 
 	+	config_uninstaller.sh
@@ -37,17 +37,20 @@
 
 		To run:
 
-			./config_uninstaller.sh
-
+				./config_uninstaller.sh
 
 
 *	### Configuring/Settings ###
 
-	The variables refered above ($CONFIG_PATH, $SEPARATOR, etc.) are
-	defined at the top of both config_installer and config_unistaller.
+	+	config.conf
 
-	If you wish to change the defaults, feel free to fork, and then
-	change those variables to others that suit your needs better.
+		This file is not run, but sourced by the other scripts. It
+		basically contains the settings, like what file contains
+		$SEPARATOR or where is $CONFIG_PATH.
+
+		If you wish to change the defaults, feel free to fork, and
+		then change those variables to others that suit your needs
+		better.
 
 
 ## Assumptions/Dependencies ##
@@ -77,10 +80,14 @@ Dependencies (tested):
 
 ## TODO ##
 
--	[x] Cleanup script - separate script, to "un-append" the
+-	[X] Cleanup script - separate script, to "un-append" the
 	customizations made + delete scripts
 
 -	[ ] Add support to subdirectories
+
+-	[ ] Make config_installer.sh and config_uninstaller location
+	    independent
+
 
 ## Programs customized/tested ##
 
@@ -94,7 +101,7 @@ Dependencies (tested):
 
 Max Irwin is the author of https://max.io/bash.html, repo
 [here](https://github.com/binarymax); I used his work to generate a
-script, tmux_stuff/script.sh.
+script, tmux_stuff/Script.sh.
 
 And a big thank you for all the open source/free software community;
 for I truly stand in the shoulders of giants.
