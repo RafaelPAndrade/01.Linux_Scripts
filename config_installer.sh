@@ -9,22 +9,11 @@
 #	 with files if they do not have the whole path
 
 
-# Folder where the edits to configs are stored
-CONFIG_FOLDER="./dot_files/"
+CONF_FILE="./config.conf"
 
-# Path where pre-installed configs are
-CONFIG_PATH="$HOME/"
+## Loading settings ##
 
-
-# Folder where entirely new files (scripts) are stored
-SCRIPTS_FOLDER="./tmux_stuff/"
-
-# Destination for scripts
-SCRIPTS_PATH="$HOME/bin/"
-
-# File that contains the customizations separator
-CUSTOM_BAR="./separator"
-
+. "$CONF_FILE"
 
 ## Program Start ##
 

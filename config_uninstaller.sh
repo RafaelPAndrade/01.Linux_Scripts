@@ -14,25 +14,11 @@
 #
 #	 If a match is found, please edit the separator and start again
 
+CONF_FILE="./config.conf"
 
-# Folder where the edits to configs are stored
-CONFIG_FOLDER="./dot_files/"
+## Loading settings ##
 
-# Path where pre-installed configs are
-CONFIG_PATH="$HOME/"
-
-# Folder where entirely new files (scripts) are stored
-SCRIPTS_FOLDER="./tmux_stuff/"
-
-# Destination for scripts
-SCRIPTS_PATH="$HOME/bin/"
-
-# File that contains the customizations separator
-CUSTOM_BAR="./separator"
-
-# File name for a temp file.
-TEMP_FILE="r4nd0m_f1l3n4m3"
-
+. "$CONF_FILE"
 
 ## Program start ##
 
