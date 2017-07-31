@@ -12,7 +12,7 @@
 
 		-	Appends all the files in the folder $CONFIG_FOLDER to their
 			hidden equivalent in $CONFIG_PATH. This is, the file bashrc
-			(and $SEPARATOR) will be appended to ~/.bashrc.
+			(and $CUSTOM_BAR) will be appended to ~/.bashrc.
 
 		-	Copies (interactively) all the scripts in the folder 
 			$SCRIPTS_FOLDER to $SCRIPTS_PATH, and changes the permissions
@@ -29,7 +29,7 @@
 		When run, this script:
 
 		-	Strips the configs from all the lines that are below
-			the $SEPARATOR.
+			the $CUSTOM_BAR.
 
 		-	Compares all the scripts in $SCRIPTS_FOLDER to their
 			equivalent in $SCRIPTS_PATH. If no difference is found,
@@ -45,8 +45,8 @@
 	+	config.conf
 
 		This file is not run, but sourced by the other scripts. It
-		basically contains the settings, like what file contains
-		$SEPARATOR or where is $CONFIG_PATH.
+		basically contains the settings, like what is the $CUSTOM_BAR
+		or where is $CONFIG_PATH.
 
 		If you wish to change the defaults, feel free to fork, and
 		then change those variables to others that suit your needs

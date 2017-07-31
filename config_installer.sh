@@ -24,7 +24,8 @@ if [ -d "$CONFIG_FOLDER" ] ; then
 
 	for l in $(ls -A "$CONFIG_FOLDER") ; do
 		echo "\n\tSetting up $l"
-		cat "$CUSTOM_BAR" "$CONFIG_FOLDER$l" >> "$CONFIG_PATH.$l"
+		echo "$CUSTOM_BAR" >> "$CONFIG_PATH.$l"
+		cat "$CONFIG_FOLDER$l" >> "$CONFIG_PATH.$l"
 	done
 fi
 

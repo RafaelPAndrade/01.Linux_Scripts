@@ -32,7 +32,7 @@ if [ -d "$CONFIG_FOLDER" ] ; then
 
 		if [ -f "$CONFIG_PATH.$l" -a -w "$CONFIG_PATH.$l" ] ; then
 			echo "\t\tResetting $l (file found and is writeable)"
-			A=$(grep --file="$CUSTOM_BAR" --max-count=1 --line-number\
+			A=$(grep --regexp="$CUSTOM_BAR" --max-count=1 --line-number\
 			    "$CONFIG_PATH.$l" | cut --delimiter=: --field=1)
 			if [ -n "$A" ] ; then
 				echo "\t\tSeparator found! Deleting below line $A"
