@@ -15,17 +15,43 @@ CONF_FILE="./config.conf"
 
 . "$CONF_FILE"
 
+
+### Functions ###
+
+append_config() {
+
+	if [ "$1" -a -f "$CONFIG_FOLDER$1" ] ; then
+		echo "\n\tSetting up $1"
+		echo "$CUSTOM_BAR" >> "$CONFIG_PATH.$1"
+		cat  "$CONFIG_FOLDER$1" >> "$CONFIG_PATH.$1"
+	else
+		echo "\n\tArgument invalid: $1"
+	fi
+
+}
+
+
+copy_scripts() {
+	if [ "$1" -a -f "$SCRIPTS_FOLDER$1" ] ; then
+		echo "\n\tCopying $1 and changing permissions..."
+		cp -i "$SCRIPTS_FOLDER$1" "$SCRIPTS_PATH"
+		chmod -v =700 "$SCRIPTS_PATH$1"
+	else
+		echo "\n\tArgument invalid: $1"
+	fi
+
+}
+
 ## Program Start ##
+
 
 ### Append configs ###
 
 if [ -d "$CONFIG_FOLDER" ] ; then
 	echo "\nAppending configs from $CONFIG_FOLDER to $HOME"
 
-	for l in $(ls -A "$CONFIG_FOLDER") ; do
-		echo "\n\tSetting up $l"
-		echo "$CUSTOM_BAR" >> "$CONFIG_PATH.$l"
-		cat "$CONFIG_FOLDER$l" >> "$CONFIG_PATH.$l"
+	for l in $(ls -A "$CONFIG_FOLDER")
+		do append_config "$l"
 	done
 fi
 
@@ -34,10 +60,8 @@ fi
 if [ -d "$SCRIPTS_FOLDER" ] ; then
 	echo "\nMoving $SCRIPTS_FOLDER to $HOME"
 
-	for f in $(ls -A "$SCRIPTS_FOLDER"); do
-		echo "\n\tCopying $f and changing permissions..."
-		cp -i "$SCRIPTS_FOLDER$f" "$SCRIPTS_PATH"
-		chmod -v =700 "$SCRIPTS_PATH$f"
+	for f in $(ls -A "$SCRIPTS_FOLDER")
+		do copy_scripts "$f"
 	done
 
 fi
