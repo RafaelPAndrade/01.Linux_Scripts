@@ -20,6 +20,10 @@ append_config() {
 
 	if [ "$1" -a -f "$1" ] ; then
 		echo "\n\tSetting up $1"
+		A=$(dirname "$1")
+		if [ "." != "$A" ] ; then
+			mkdir --parents "$CONFIG_PATH.$A"
+		fi
 		echo "$CUSTOM_BAR" >> "$CONFIG_PATH.$1"
 		cat  "$1" >> "$CONFIG_PATH.$1"
 	else
@@ -32,7 +36,7 @@ append_config() {
 copy_scripts() {
 	if [ "$1" -a -f "$1" ] ; then
 		echo "\n\tCopying $1 and changing permissions..."
-		cp -i "$1" "$SCRIPTS_PATH"
+		cp --interactive --parents "$1" "$SCRIPTS_PATH"
 		chmod -v =700 "$SCRIPTS_PATH$1"
 	else
 		echo "\n\tArgument invalid: $1"

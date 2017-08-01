@@ -73,6 +73,7 @@ Dependencies (tested):
 	-	rm
 	-	mv
 	-	pwd
+	-	mkdir
 +	GNU grep (2.25)
 +	cmp (diffutils 3.3)
 
@@ -83,7 +84,7 @@ Dependencies (tested):
 -	[X] Cleanup script - separate script, to "un-append" the
 	customizations made + delete scripts
 
--	[ ] Add support to subdirectories
+-	[X] Add support to subdirectories
 
 -	[ ] Make config_installer.sh and config_uninstaller location
 	    independent
