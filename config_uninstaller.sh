@@ -22,30 +22,65 @@ CONF_FILE="./config.conf"
 
 ## Program start ##
 
+### Functions ###
+
+config_reset() {
+	echo "\n\tChecking $1"
+
+	if [ -f "$CONFIG_PATH.$1" -a -w "$CONFIG_PATH.$1" ] ; then
+		echo "\t\tResetting $1 (file found and is writeable)"
+
+		A=$(grep --regexp="$CUSTOM_BAR" --max-count=1 --line-number\
+		    "$CONFIG_PATH.$1" | cut --delimiter=: --field=1)
+
+		if [ -n "$A" ] ; then
+			echo "\t\tSeparator found! Deleting below line $A"
+			head "$CONFIG_PATH.$1" -n "$A"| head -n -1 >| "$TEMP_FILE"
+			mv "$TEMP_FILE" "$CONFIG_PATH.$1"
+		else
+			echo "\t\tSeparator not found. Leaving .$1 unchanged"
+		fi
+
+	else
+		echo "\t\t$CONFIG_PATH.$1 does not exist or is not writeable"
+	fi
+}
+
+
+
+delete_scripts() {
+	echo "\n\tChecking $1"
+
+	if [ -w "$SCRIPTS_PATH$1" ] ; then
+		cmp --silent "$1" "$SCRIPTS_PATH$1"
+
+		if [ "$?" -eq 0 ] ; then
+			echo "\t\tDeleting $1 from $SCRIPTS_PATH (no differences found)"
+			rm -i "$SCRIPTS_PATH$1"
+		else
+			echo "\t\tNot deleting $1, differences found"
+		fi
+
+	else
+		echo "\t\t$SCRIPTS_PATH$1 does not exist or is not writeable"
+	fi
+}
+
 ### Config reset ###
 
 if [ -d "$CONFIG_FOLDER" ] ; then
 	echo "\nResetting configs in $CONFIG_PATH"
 
-	for l in $(ls -A "$CONFIG_FOLDER") ; do
-		echo "\n\tChecking $l"
+	func () {
+		config_reset "$1"
+	}
 
-		if [ -f "$CONFIG_PATH.$l" -a -w "$CONFIG_PATH.$l" ] ; then
-			echo "\t\tResetting $l (file found and is writeable)"
-			A=$(grep --regexp="$CUSTOM_BAR" --max-count=1 --line-number\
-			    "$CONFIG_PATH.$l" | cut --delimiter=: --field=1)
-			if [ -n "$A" ] ; then
-				echo "\t\tSeparator found! Deleting below line $A"
-				head "$CONFIG_PATH.$l" -n "$A"| head -n -1 >| "$TEMP_FILE"
-				mv "$TEMP_FILE" "$CONFIG_PATH.$l"
-			else
-				echo "\t\tSeparator not found. Leaving .$l unchanged"
-			fi
-		else
-			echo "\t\t$CONFIG_PATH.$l does not exist or is not writeable"
-		fi
+	previous=$(pwd)
+	cd "$CONFIG_FOLDER"
 
-	done
+	func_to_files *
+
+	cd "$previous"
 fi
 
 
@@ -54,23 +89,16 @@ fi
 if [ -d "$SCRIPTS_FOLDER" ] ; then
 	echo "\nScanning $SCRIPTS_PATH for scripts..."
 
-	for f in $(ls -A "$SCRIPTS_FOLDER"); do
-		echo "\n\tChecking $f"
+	func () {
+		delete_scripts "$1"
+	}
 
-			if [ -f "$SCRIPTS_PATH$f" -a -w "$SCRIPTS_PATH$f" ] ; then
-				cmp --silent "$SCRIPTS_FOLDER$f" "$SCRIPTS_PATH$f"
+	previous=$(pwd)
+	cd "$SCRIPTS_FOLDER"
 
-				if [ "$?" -eq 0 ] ; then
-					echo "\t\tDeleting $f from $SCRIPTS_PATH (no differences found)"
-					rm -i "$SCRIPTS_PATH$f"
-				else
-					echo "\t\tNot deleting $f, differences found"
-				fi
+	func_to_files *
 
-			else
-				echo "\t\t$SCRIPTS_PATH$f does not exist or is not writeable"
-			fi
-	done
+	cd "$previous"
 fi
 
 
