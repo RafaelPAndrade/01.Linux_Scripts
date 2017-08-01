@@ -65,7 +65,6 @@ Dependencies (tested):
 +	GNU coreutils (8.25)
 	-	test / [
 	-	echo
-	-	ls
 	-	cat
 	-	cp
 	-	chmod
@@ -73,6 +72,7 @@ Dependencies (tested):
 	-	head
 	-	rm
 	-	mv
+	-	pwd
 +	GNU grep (2.25)
 +	cmp (diffutils 3.3)
 

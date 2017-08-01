@@ -38,7 +38,7 @@ config_reset() {
 			head "$CONFIG_PATH.$1" -n "$A"| head -n -1 >| "$TEMP_FILE"
 			mv "$TEMP_FILE" "$CONFIG_PATH.$1"
 		else
-			echo "\t\tSeparator not found. Leaving .$l unchanged"
+			echo "\t\tSeparator not found. Leaving .$1 unchanged"
 		fi
 
 	else
@@ -52,7 +52,7 @@ delete_scripts() {
 	echo "\n\tChecking $1"
 
 	if [ -w "$SCRIPTS_PATH$1" ] ; then
-		cmp --silent "$SCRIPTS_FOLDER$1" "$SCRIPTS_PATH$1"
+		cmp --silent "$1" "$SCRIPTS_PATH$1"
 
 		if [ "$?" -eq 0 ] ; then
 			echo "\t\tDeleting $1 from $SCRIPTS_PATH (no differences found)"
@@ -71,9 +71,16 @@ delete_scripts() {
 if [ -d "$CONFIG_FOLDER" ] ; then
 	echo "\nResetting configs in $CONFIG_PATH"
 
-	for l in $(ls -A "$CONFIG_FOLDER")
-		do config_reset "$l"
-	done
+	func () {
+		config_reset "$1"
+	}
+
+	previous=$(pwd)
+	cd "$CONFIG_FOLDER"
+
+	func_to_files *
+
+	cd "$previous"
 fi
 
 
@@ -82,9 +89,16 @@ fi
 if [ -d "$SCRIPTS_FOLDER" ] ; then
 	echo "\nScanning $SCRIPTS_PATH for scripts..."
 
-	for f in $(ls -A "$SCRIPTS_FOLDER")
-		do delete_scripts "$f"
-	done
+	func () {
+		delete_scripts "$1"
+	}
+
+	previous=$(pwd)
+	cd "$SCRIPTS_FOLDER"
+
+	func_to_files *
+
+	cd "$previous"
 fi
 
 
