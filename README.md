@@ -74,6 +74,7 @@ Dependencies (tested):
 	-	mv
 	-	pwd
 	-	mkdir
+	-	mktemp
 +	GNU grep (2.25)
 +	cmp (diffutils 3.3)
 
