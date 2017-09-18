@@ -4,6 +4,7 @@
 #Rafael P.Andrade nanorc
 #Last edited date: 24/III/2017
 #Base nano version: nano 2.5.3
+#Last edit to latest nano
 
 #See cursor and line indication
 set constantshow
@@ -14,8 +15,18 @@ set const
 #C/C++
 include "/usr/share/nano/c.nanorc"
 
+#...and other available spellings too!
+include "/usr/share/nano/makefile.nanorc"
+include "/usr/share/nano/*.nanorc"
+
 #Smooth scrolling
 set smooth
+
+# Hard wrap at 80 chars
+set fill 80
+
+# And remove trailing whitespace
+set justifytrim
 
 #Soft Wrap
 set softwrap

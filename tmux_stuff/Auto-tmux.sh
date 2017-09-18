@@ -12,7 +12,7 @@ WINDOW1_NAME='Deepwork'
 Main_command='man $(ls /usr/share/man/man* | shuf -n1 | cut -d. -f1)'
 Wingman_command='~/bin/Script.sh'
 Minimap_command='watch -n 1 -tc -- tree -trC'
-Cal_command='watch -n 3600 -t -- cal -h'
+Cal_command='while :; do clear; cal; sleep 3600; done'
 
 
 # Test if inside a tmux session
