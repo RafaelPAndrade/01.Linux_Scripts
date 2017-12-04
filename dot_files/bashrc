@@ -1,7 +1,9 @@
 #User edited alias - bashrc
 ###################################
 
-# Note: Do not space the = sign. It will break alias
+# setting locale
+export LC_ALL=C.UTF-8
+
 
 # some more ls aliases
 alias ll='ls -alF'

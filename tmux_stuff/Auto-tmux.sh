@@ -6,6 +6,7 @@ SESSION_NAME='local'
 
 WINDOW0_NAME='Main'
 WINDOW1_NAME='Deepwork'
+WINDOW2_NAME='Cinema'
 
 # These commands are send using tmux' send-keys
 # A random man page!
@@ -57,6 +58,13 @@ tmux clock-mode -t {bottom-right}
 # Create a big Deepwork
 # window
 tmux new-window -n "$WINDOW1_NAME" -c "#{pane_current_path}"
+
+# Create a Cinema window(1) - 2(0 and 3) bars of 32 chars in the side
+tmux new-window -n "$WINDOW2_NAME" -c "#{pane_current_path}"
+tmux split-window -h -p 88 -c "#{pane_current_path}"
+tmux split-window -h -p 15 -c "#{pane_current_path}"
+
+
 
 # Selects panes to format history:
 # Minimap -> Wingman -> Main
