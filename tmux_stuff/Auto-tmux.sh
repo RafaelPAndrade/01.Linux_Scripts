@@ -8,6 +8,11 @@ WINDOW0_NAME='Main'
 WINDOW1_NAME='Deepwork'
 WINDOW2_NAME='Cinema'
 
+# Client size, necessary for Cinema mode
+CLIENT_WIDTH=170
+VERTICAL_BARS=32
+
+
 # These commands are send using tmux' send-keys
 # A random man page!
 Main_command='man $(ls /usr/share/man/man* | shuf -n1 | cut -d. -f1)'
@@ -61,12 +66,15 @@ tmux new-window -n "$WINDOW1_NAME" -c "#{pane_current_path}"
 
 # Create a Cinema window(1) - 2(0 and 3) bars of 32 chars in the side
 tmux new-window -n "$WINDOW2_NAME" -c "#{pane_current_path}"
-tmux split-window -h -p 88 -c "#{pane_current_path}"
-tmux split-window -h -p 15 -c "#{pane_current_path}"
-
+tmux split-window -h -l $((CLIENT_WIDTH - VERTICAL_BARS)) -c "#{pane_current_path}"
+tmux split-window -h -l $VERTICAL_BARS -c "#{pane_current_path}"
 
 
 # Selects panes to format history:
+# Big Cinema pane
+tmux select-pane -t 1
+
+
 # Minimap -> Wingman -> Main
 tmux select-window -t "$SESSION_NAME":"$WINDOW0_NAME"
 tmux select-pane -t 1
