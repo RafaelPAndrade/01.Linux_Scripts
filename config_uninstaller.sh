@@ -30,7 +30,7 @@ config_reset() {
 	if [ -f "$CONFIG_PATH.$1" -a -w "$CONFIG_PATH.$1" ] ; then
 		echo "\t\tResetting $1 (file found and is writeable)"
 
-		A=$(grep --regexp="$CUSTOM_BAR" --max-count=1 --line-number\
+		A=$(grep -E "$CUSTOM_BAR" -m 1 -n \
 		    "$CONFIG_PATH.$1" | cut --delimiter=: --field=1)
 
 		if [ -n "$A" ] ; then
@@ -52,7 +52,7 @@ delete_scripts() {
 	echo "\n\tChecking $1"
 
 	if [ -w "$SCRIPTS_PATH$1" ] ; then
-		cmp --silent "$1" "$SCRIPTS_PATH$1"
+		cmp -s "$1" "$SCRIPTS_PATH$1"
 
 		if [ "$?" -eq 0 ] ; then
 			echo "\t\tDeleting $1 from $SCRIPTS_PATH (no differences found)"

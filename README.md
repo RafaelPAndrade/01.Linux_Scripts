@@ -15,9 +15,9 @@
 			(and $CUSTOM_BAR) will be appended to ~/.bashrc.
 
 		-	Copies (interactively) all the scripts in the folder 
-			$SCRIPTS_FOLDER to $SCRIPTS_PATH, and changes the permissions
-			to 700 (only the file owner can read, write and execute the
-			script).
+			$SCRIPTS_FOLDER to $SCRIPTS_PATH, and changes the
+			permissions to 700 (only the file owner can read, write and
+			execute the script).
 
 		To run:
 
@@ -59,10 +59,16 @@ This repo/project is intended to be cross platform (sh script, no bashisms);
 if any problem arises in any Posix compliant OS, please fill a bug
 report.
 
-Dependencies (tested):
+Until 05/Jan/2018, tested on:
+-	Lubuntu
+-	Ubuntu chroot on ChromeOS (crouton)
+-	Kali
+-	Debian (Raspbian)
+-	Termux
 
+Dependencies:
 +	sh/dash
-+	GNU coreutils (8.25)
++	GNU coreutils (8.25, 8.29)
 	-	test / [
 	-	echo
 	-	cat
@@ -75,8 +81,8 @@ Dependencies (tested):
 	-	pwd
 	-	mkdir
 	-	mktemp
-+	GNU grep (2.25)
-+	cmp (diffutils 3.3)
++	grep (GNU 2.25, BusyBox 1.27.2)
++	cmp (diffutils 3.3, BusyBox 1.27.2)
 
 
 
