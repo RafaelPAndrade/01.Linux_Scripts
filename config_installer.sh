@@ -18,28 +18,28 @@ CONF_FILE="./config.conf"
 
 append_config() {
 
-	if [ "$1" -a -f "$1" ] ; then
-		echo "\n\tSetting up $1"
+	if [ "$1" ]  && [ -f "$1" ] ; then
+		printf "\\tSetting up %s\\n" "$1"
 		A=$(dirname "$1")
 		if [ "." != "$A" ] ; then
 			mkdir --parents "$CONFIG_PATH.$A"
 		fi
-		echo "$CUSTOM_BAR" >> "$CONFIG_PATH.$1"
+		printf "%s" "$CUSTOM_BAR" >> "$CONFIG_PATH.$1"
 		cat  "$1" >> "$CONFIG_PATH.$1"
 	else
-		echo "\n\tArgument invalid: $1"
+		printf "\\tArgument invalid: %s\\n" "$1"
 	fi
 
 }
 
 
 copy_scripts() {
-	if [ "$1" -a -f "$1" ] ; then
-		echo "\n\tCopying $1 and changing permissions..."
+	if [ "$1" ] && [ -f "$1" ] ; then
+		printf "\\tCopying %s and changing permissions...\\n" "$1"
 		cp --interactive --parents "$1" "$SCRIPTS_PATH"
 		chmod -v =700 "$SCRIPTS_PATH$1"
 	else
-		echo "\n\tArgument invalid: $1"
+		printf "\\tArgument invalid: %s\\n" "$1"
 	fi
 
 }
@@ -50,36 +50,36 @@ copy_scripts() {
 ### Append configs ###
 
 if [ -d "$CONFIG_FOLDER" ] ; then
-	echo "\nAppending configs from $CONFIG_FOLDER to $HOME"
+	printf "Appending configs from %s to %s\\n" "$CONFIG_FOLDER" "$HOME"
 
 	func () {
 		append_config "$1"
 	}
 
 	previous=$(pwd)
-	cd "$CONFIG_FOLDER"
+	cd "$CONFIG_FOLDER" || exit 2
 
-	func_to_files *
+	func_to_files -- *
 
-	cd "$previous"
+	cd "$previous" || exit 2
 
 fi
 
 ### Copy scripts ###
 
 if [ -d "$SCRIPTS_FOLDER" ] ; then
-	echo "\nMoving $SCRIPTS_FOLDER to $HOME"
+	printf "Moving %s to %s\\n" "$SCRIPTS_FOLDER" "$HOME"
 
 	func () {
 		copy_scripts "$1"
 	}
 
 	previous=$(pwd)
-	cd "$SCRIPTS_FOLDER"
+	cd "$SCRIPTS_FOLDER" || exit 2
 
-	func_to_files *
+	func_to_files -- *
 
-	cd "$previous"
+	cd "$previous" || exit 2
 
 fi
 

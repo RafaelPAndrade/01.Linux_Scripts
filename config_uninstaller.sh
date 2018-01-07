@@ -25,80 +25,79 @@ CONF_FILE="./config.conf"
 ### Functions ###
 
 config_reset() {
-	echo "\n\tChecking $1"
+	printf "\\tChecking %s\\n" "$1"
 
-	if [ -f "$CONFIG_PATH.$1" -a -w "$CONFIG_PATH.$1" ] ; then
-		echo "\t\tResetting $1 (file found and is writeable)"
+	if [ -f "$CONFIG_PATH.$1" ] &&  [ -w "$CONFIG_PATH.$1" ] ; then
+		printf "\\t\\tResetting %s (file found and is writeable)\\n" "$1"
 
 		A=$(grep -E "$CUSTOM_BAR" -m 1 -n \
 		    "$CONFIG_PATH.$1" | cut --delimiter=: --field=1)
 
 		if [ -n "$A" ] ; then
-			echo "\t\tSeparator found! Deleting below line $A"
+			printf "\\t\\tSeparator found! Deleting below line %s\\n" "$A"
 			head "$CONFIG_PATH.$1" -n "$A"| head -n -1 >| "$TEMP_FILE"
 			mv "$TEMP_FILE" "$CONFIG_PATH.$1"
 		else
-			echo "\t\tSeparator not found. Leaving .$1 unchanged"
+			printf "\\t\\tSeparator not found. Leaving .%s unchanged\\n" "$1"
 		fi
 
 	else
-		echo "\t\t$CONFIG_PATH.$1 does not exist or is not writeable"
+		printf "\\t\\t%s.%s does not exist or is not writeable\\n" "$CONFIG_PATH" "$1"
 	fi
 }
 
 
 
 delete_scripts() {
-	echo "\n\tChecking $1"
+	printf "\\tChecking %s\\n" "$1"
 
 	if [ -w "$SCRIPTS_PATH$1" ] ; then
-		cmp -s "$1" "$SCRIPTS_PATH$1"
 
-		if [ "$?" -eq 0 ] ; then
-			echo "\t\tDeleting $1 from $SCRIPTS_PATH (no differences found)"
+		if  cmp -s "$1" "$SCRIPTS_PATH$1" ; then
+			printf "\\t\\tDeleting %s from %s (no differences found)\\n" "$1" "$SCRIPTS_PATH"
 			rm -i "$SCRIPTS_PATH$1"
 		else
-			echo "\t\tNot deleting $1, differences found"
+			printf "\\t\\tNot deleting %s, differences found\\n" "$1"
 		fi
 
 	else
-		echo "\t\t$SCRIPTS_PATH$1 does not exist or is not writeable"
+		printf "\\t\\t%s does not exist or is not writeable\\n" "$SCRIPTS_PATH$1"
 	fi
 }
 
 ### Config reset ###
 
 if [ -d "$CONFIG_FOLDER" ] ; then
-	echo "\nResetting configs in $CONFIG_PATH"
+	printf "Resetting configs in %s\\n" "$CONFIG_PATH"
 
 	func () {
 		config_reset "$1"
 	}
 
 	previous=$(pwd)
-	cd "$CONFIG_FOLDER"
+	cd "$CONFIG_FOLDER" || exit 2
 
-	func_to_files *
+	func_to_files -- *
 
-	cd "$previous"
+	cd "$previous" || exit 2
 fi
 
 
 ### Delete scripts ###
 
 if [ -d "$SCRIPTS_FOLDER" ] ; then
-	echo "\nScanning $SCRIPTS_PATH for scripts..."
+	printf "Scanning %s for scripts...\\n" "$SCRIPTS_FOLDER"
 
 	func () {
 		delete_scripts "$1"
 	}
 
 	previous=$(pwd)
-	cd "$SCRIPTS_FOLDER"
+	cd "$SCRIPTS_FOLDER" || exit 2
 
-	func_to_files *
+	func_to_files -- *
 
-	cd "$previous"
+	cd "$previous" || exit 2
 fi
 
 
