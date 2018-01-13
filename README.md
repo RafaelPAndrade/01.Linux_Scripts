@@ -4,20 +4,21 @@
 
 ## Instructions ##
 
-*	### Scripts ###
+*	** Scripts **
 
 	+	config_installer.sh
 
 		When run, this script:
 
-		-	Appends all the files in the folder $CONFIG_FOLDER to their
-			hidden equivalent in $CONFIG_PATH. This is, the file bashrc
-			(and $CUSTOM_BAR) will be appended to ~/.bashrc.
+		-	Appends all the files in the folder $CONFIG_FOLDER to
+			their hidden equivalent in $CONFIG_PATH. This is, the
+			file bashrc (and $CUSTOM_BAR) will be appended to
+			~/.bashrc.
 
-		-	Copies (interactively) all the scripts in the folder 
+		-	Copies (interactively) all the scripts in the folder
 			$SCRIPTS_FOLDER to $SCRIPTS_PATH, and changes the
-			permissions to 700 (only the file owner can read, write and
-			execute the script).
+			permissions to 700 (only the file owner can read, write
+			and execute the script).
 
 		To run:
 
@@ -29,7 +30,7 @@
 		When run, this script:
 
 		-	Strips the configs from all the lines that are below
-			the $CUSTOM_BAR.
+			the separator.
 
 		-	Compares all the scripts in $SCRIPTS_FOLDER to their
 			equivalent in $SCRIPTS_PATH. If no difference is found,
@@ -40,12 +41,12 @@
 				./config_uninstaller.sh
 
 
-*	### Configuring/Settings ###
+*	** Configuring/Settings **
 
 	+	config.conf
 
 		This file is not run, but sourced by the other scripts. It
-		basically contains the settings, like what is the $CUSTOM_BAR
+		basically contains the settings, like what is the separator
 		or where is $CONFIG_PATH.
 
 		If you wish to change the defaults, feel free to fork, and
@@ -59,7 +60,7 @@ This repo/project is intended to be cross platform (sh script, no bashisms);
 if any problem arises in any Posix compliant OS, please fill a bug
 report.
 
-Until 05/Jan/2018, tested on:
+As of 05/Jan/2018, tested on:
 -	Lubuntu
 -	Ubuntu chroot on ChromeOS (crouton)
 -	Kali
@@ -81,6 +82,7 @@ Dependencies:
 	-	pwd
 	-	mkdir
 	-	mktemp
+	-	tr
 +	grep (GNU 2.25, BusyBox 1.27.2)
 +	cmp (diffutils 3.3, BusyBox 1.27.2)
 
@@ -103,7 +105,7 @@ Dependencies:
 -	git
 -	nano
 -	tmux
-
+-	vim
 
 ## Credits ##
 

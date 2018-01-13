@@ -1,5 +1,6 @@
-#User edited alias - bashrc
-###################################
+#
+# User edited alias - bashrc
+################################
 
 # setting locale
 export LC_ALL=C.UTF-8

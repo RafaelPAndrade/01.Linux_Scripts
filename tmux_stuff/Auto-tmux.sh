@@ -17,7 +17,7 @@ VERTICAL_BARS=32
 # A random man page!
 Main_command='man $(ls /usr/share/man/man* | shuf -n1 | cut -d. -f1); clear'
 Wingman_command='~/bin/Script.sh'
-Minimap_command='watch -n 1 -tc -- tree --charset ascii -trC; clear'
+Minimap_command='watch -n 0.1 -tc -- tree --charset ascii -trC; clear'
 Cal_command='while :; do clear; cal; sleep 3600; done; clear'
 
 

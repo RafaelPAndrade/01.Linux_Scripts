@@ -6,6 +6,7 @@
 # Limits:
 #	-It is not very smart about subfolders in general
 
+set -e
 
 CONF_FILE="./config.conf"
 
@@ -24,31 +25,27 @@ append_config() {
 		if [ "." != "$A" ] ; then
 			mkdir --parents "$CONFIG_PATH.$A"
 		fi
-		printf "%s" "$CUSTOM_BAR" >> "$CONFIG_PATH.$1"
-		cat  "$1" >> "$CONFIG_PATH.$1"
+		separator_calc "$1" >> "$CONFIG_PATH.$1"
+		{ echo ; tail -n +2 "$1"; } >> "$CONFIG_PATH.$1"
 	else
 		printf "\\tArgument invalid: %s\\n" "$1"
 	fi
 
 }
-
 
 copy_scripts() {
 	if [ "$1" ] && [ -f "$1" ] ; then
 		printf "\\tCopying %s and changing permissions...\\n" "$1"
-		cp --interactive --parents "$1" "$SCRIPTS_PATH"
+		cp --parents --interactive "$1" "$SCRIPTS_PATH"
 		chmod -v =700 "$SCRIPTS_PATH$1"
 	else
 		printf "\\tArgument invalid: %s\\n" "$1"
 	fi
-
 }
 
 ## Program Start ##
 
-
 ### Append configs ###
-
 if [ -d "$CONFIG_FOLDER" ] ; then
 	printf "Appending configs from %s to %s\\n" "$CONFIG_FOLDER" "$HOME"
 
@@ -68,7 +65,12 @@ fi
 ### Copy scripts ###
 
 if [ -d "$SCRIPTS_FOLDER" ] ; then
-	printf "Moving %s to %s\\n" "$SCRIPTS_FOLDER" "$HOME"
+	printf "Moving %s to %s\\n" "$SCRIPTS_FOLDER" "$SCRIPTS_PATH"
+
+	if [ ! -d "$SCRIPTS_PATH" ] ; then
+		printf "Creating %s\\n" "$SCRIPTS_PATH"
+		mkdir "$SCRIPTS_PATH"
+	fi
 
 	func () {
 		copy_scripts "$1"

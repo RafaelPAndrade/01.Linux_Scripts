@@ -1,0 +1,53 @@
+"
+" Shortcuts for tabs in Vim >= 7.0
+
+" Taking Vi compat out of Vim
+" Taken from https://askubuntu.com/questions/500315/need-good-example-of-vimrc-file#500338
+set nocompatible
+set encoding=utf-8
+set fileencoding=utf-8
+
+"set shiftwidth=4 " set indentation depth to 4 columns
+"set softtabstop=4 " backspacing over 4 spaces like over tabs
+"set tabstop=4 " set tabulator length to 4 columns
+"set textwidth=80 " wrap lines automatically at 40th column
+
+" search settings
+set hlsearch " highlight search results
+set ignorecase " do case insensitive search...
+set incsearch " do incremental search
+set smartcase " ...unless capital letters are used
+
+" file type specific settings
+filetype on " enable file type detection
+filetype plugin on " load the plugins for specific file types
+"filetype indent on " automatically indent code
+
+
+" Taken from http://vim.wikia.com/wiki/Alternative_tab_navigation
+" Using t + motion (hjkl) to walk, plus
+" td to close
+nnoremap th  :tabfirst<CR>
+nnoremap tj  :tabnext<CR>
+nnoremap tk  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnext<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
+
+" Show line numbers
+set number
+set relativenumber
+
+" Taken from https://kinbiko.com/vim/my-shiniest-vim-gems/
+" Highlight collumn
+"set cursorcolumn
+
+" Make Whitespace Visible
+set listchars=tab:>-,trail:·
+set list
+
+" Highlight Ugly Code
+match ErrorMsg '\%>120v.\+'
+match ErrorMsg '\s\+$'

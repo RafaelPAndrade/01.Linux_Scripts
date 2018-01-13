@@ -14,6 +14,7 @@
 #
 #	 If a match is found, please edit the separator and start again
 
+set -e
 CONF_FILE="./config.conf"
 
 ## Loading settings ##
@@ -30,7 +31,7 @@ config_reset() {
 	if [ -f "$CONFIG_PATH.$1" ] &&  [ -w "$CONFIG_PATH.$1" ] ; then
 		printf "\\t\\tResetting %s (file found and is writeable)\\n" "$1"
 
-		A=$(grep -E "$CUSTOM_BAR" -m 1 -n \
+		A=$(grep -E $(separator_calc "$1" ) -m 1 -n \
 		    "$CONFIG_PATH.$1" | cut --delimiter=: --field=1)
 
 		if [ -n "$A" ] ; then
@@ -55,7 +56,7 @@ delete_scripts() {
 
 		if  cmp -s "$1" "$SCRIPTS_PATH$1" ; then
 			printf "\\t\\tDeleting %s from %s (no differences found)\\n" "$1" "$SCRIPTS_PATH"
-			rm -i "$SCRIPTS_PATH$1"
+			rm "$SCRIPTS_PATH$1"
 		else
 			printf "\\t\\tNot deleting %s, differences found\\n" "$1"
 		fi
