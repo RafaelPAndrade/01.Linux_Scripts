@@ -4,7 +4,7 @@
 
 ## Instructions ##
 
-*	** Scripts **
+*	**Scripts**
 
 	+	config_installer.sh
 
@@ -41,7 +41,7 @@
 				./config_uninstaller.sh
 
 
-*	** Configuring/Settings **
+*	**Configuring/Settings**
 
 	+	config.conf
 
