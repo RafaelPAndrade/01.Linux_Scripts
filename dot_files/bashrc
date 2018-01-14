@@ -5,7 +5,6 @@
 # setting locale
 export LC_ALL=C.UTF-8
 
-
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -18,3 +17,21 @@ alias c='clear'
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=100000
 HISTFILESIZE=200000
+
+# If a command is a repetition or started with a space, do not save in
+# history
+HISTCONTROL=ignoreboth
+
+# When showing history, include date and time
+HISTTIMEFORMAT='%t%d/%m/%Y%t%R%t'
+
+# Do not overwrite history
+shopt -s histappend
+
+# If command was a dir, cd into it
+shopt -s autocd
+
+# PS1 prompt:
+# [user@host ~/dir/subdir 12:59]
+# $ command
+PS1='[\u@\h \w \D{%R}]\n\$ '
